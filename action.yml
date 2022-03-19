@@ -42,6 +42,10 @@ outputs:
     description: ""
     value: ${{ steps.common-data.outputs.gitUserEmail }}
 
+defaults:
+  run:
+    shell: bash
+
 runs:
   using: "composite"
   steps:

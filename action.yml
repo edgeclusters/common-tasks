@@ -2,10 +2,6 @@ name: Common tasks
 description: "Common tasks"
 
 inputs:
-  # who-to-greet: # id of input
-  #   description: "Who to greet"
-  #   required: true
-  #   default: "World"
   accessToken:
     description: Common repository access token
     required: true

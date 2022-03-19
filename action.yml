@@ -1,0 +1,67 @@
+name: Common tasks
+description: "Common tasks"
+
+inputs:
+  # who-to-greet: # id of input
+  #   description: "Who to greet"
+  #   required: true
+  #   default: "World"
+  accessToken:
+    description: Common repository access token
+    required: true
+
+outputs:
+  containerRegistryHost:
+    description: ""
+    value: ${{ steps.common-data.outputs.containerRegistryHost }}
+  helmRegistryHost:
+    description: ""
+    value: ${{ steps.common-data.outputs.helmRegistryHost }}
+  helmRegistryPushUser:
+    description: ""
+    value: ${{ steps.common-data.outputs.helmRegistryPushUser }}
+  nexusBaseUrl:
+    description: ""
+    value: ${{ steps.common-data.outputs.nexusBaseUrl }}
+  nexusUser:
+    description: ""
+    value: ${{ steps.common-data.outputs.nexusUser }}
+  nexusSnapshotsRepoUrl:
+    description: ""
+    value: ${{ steps.common-data.outputs.nexusSnapshotsRepoUrl }}
+  nexusReleasesRepoUrl:
+    description: ""
+    value: ${{ steps.common-data.outputs.nexusReleasesRepoUrl }}
+  targetPlatforms:
+    description: ""
+    value: ${{ steps.common-data.outputs.targetPlatforms }}
+  containerRegistryUser:
+    description: ""
+    value: ${{ steps.common-data.outputs.containerRegistryUser }}
+  gitUserEmail:
+    description: ""
+    value: ${{ steps.common-data.outputs.gitUserEmail }}
+
+runs:
+  using: "composite"
+  steps:
+    - name: Checkout common environment values
+      uses: actions/checkout@v2
+      with:
+        repository: edgeclusters/academy-common
+        token: ${{ inputs.accessToken }}
+
+    - name: Register outputs
+      id: common-data
+      run: |
+        source config.env
+        echo "::set-output name=containerRegistryHost::$CONTAINER_REGISTRY_HOSTNAME"
+        echo "::set-output name=helmRegistryHost::$HELM_REGISTRY_HOSTNAME"
+        echo "::set-output name=helmRegistryPushUser::$HELM_REGISTRY_USER_PUSH"
+        echo "::set-output name=nexusBaseUrl::$NEXUS_BASE_URL"
+        echo "::set-output name=nexusUser::$NEXUS_USER"
+        echo "::set-output name=nexusSnapshotsRepoUrl::$NEXUS_SNAPSHOTS_REPO_URL"
+        echo "::set-output name=nexusReleasesRepoUrl::$NEXUS_RELEASES_REPO_URL"
+        echo "::set-output name=targetPlatforms::$TARGET_PLATFORMS"
+        echo "::set-output name=containerRegistryUser::$CONTAINER_REGISTRY_USER_PUSH"
+        echo "::set-output name=gitUserEmail::$GIT_USER_EMAIL"

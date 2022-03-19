@@ -44,7 +44,6 @@ runs:
   steps:
     - name: Checkout common environment values
       uses: actions/checkout@v2
-      shell: bash
       with:
         repository: edgeclusters/academy-common
         token: ${{ inputs.accessToken }}

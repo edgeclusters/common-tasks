@@ -42,20 +42,19 @@ outputs:
     description: ""
     value: ${{ steps.common-data.outputs.gitUserEmail }}
 
-defaults:
-  run:
-    shell: bash
-
 runs:
   using: "composite"
+
   steps:
     - name: Checkout common environment values
       uses: actions/checkout@v2
+      shell: bash
       with:
         repository: edgeclusters/academy-common
         token: ${{ inputs.accessToken }}
 
     - name: Register outputs
+      shell: bash
       id: common-data
       run: |
         source config.env

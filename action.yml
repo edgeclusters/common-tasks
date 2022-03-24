@@ -10,12 +10,23 @@ outputs:
   containerRegistryHost:
     description: ""
     value: ${{ steps.common-data.outputs.containerRegistryHost }}
+  containerRegistryUser:
+    description: ""
+    value: ${{ steps.common-data.outputs.containerRegistryUser }}
+  containerRegistryPullSecretName:
+    description: ""
+    value: ${{ steps.common-data.outputs.containerRegistryPullSecretName }}
+
   helmRegistryHost:
     description: ""
     value: ${{ steps.common-data.outputs.helmRegistryHost }}
   helmRegistryPushUser:
     description: ""
     value: ${{ steps.common-data.outputs.helmRegistryPushUser }}
+  helmRegistryBaseUrl:
+    description: ""
+    value: ${{ steps.common-data.outputs.helmRegistryBaseUrl }}
+
   nexusBaseUrl:
     description: ""
     value: ${{ steps.common-data.outputs.nexusBaseUrl }}
@@ -28,12 +39,10 @@ outputs:
   nexusReleasesRepoUrl:
     description: ""
     value: ${{ steps.common-data.outputs.nexusReleasesRepoUrl }}
+
   targetPlatforms:
     description: ""
     value: ${{ steps.common-data.outputs.targetPlatforms }}
-  containerRegistryUser:
-    description: ""
-    value: ${{ steps.common-data.outputs.containerRegistryUser }}
   gitUserEmail:
     description: ""
     value: ${{ steps.common-data.outputs.gitUserEmail }}
@@ -54,12 +63,17 @@ runs:
       run: |
         source config.env
         echo "::set-output name=containerRegistryHost::$CONTAINER_REGISTRY_HOSTNAME"
+        echo "::set-output name=containerRegistryUser::$CONTAINER_REGISTRY_USER_PUSH"
+        echo "::set-output name=containerRegistryPullSecretName::$CONTAINER_REGISTRY_PULL_SECRET_NAME"
+
         echo "::set-output name=helmRegistryHost::$HELM_REGISTRY_HOSTNAME"
         echo "::set-output name=helmRegistryPushUser::$HELM_REGISTRY_USER_PUSH"
+        echo "::set-output name=helmRegistryBaseUrl::$HELM_REGISTRY_BASE_URL"
+
         echo "::set-output name=nexusBaseUrl::$NEXUS_BASE_URL"
         echo "::set-output name=nexusUser::$NEXUS_USER"
         echo "::set-output name=nexusSnapshotsRepoUrl::$NEXUS_SNAPSHOTS_REPO_URL"
         echo "::set-output name=nexusReleasesRepoUrl::$NEXUS_RELEASES_REPO_URL"
+
         echo "::set-output name=targetPlatforms::$TARGET_PLATFORMS"
-        echo "::set-output name=containerRegistryUser::$CONTAINER_REGISTRY_USER_PUSH"
         echo "::set-output name=gitUserEmail::$GIT_USER_EMAIL"

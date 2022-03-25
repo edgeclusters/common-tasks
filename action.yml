@@ -66,11 +66,11 @@ runs:
       run: |
         source config.env
         echo "::set-output name=containerRegistryHost::$CONTAINER_REGISTRY_HOSTNAME"
-        echo "::set-output name=containerRegistryUser::$CONTAINER_REGISTRY_USER_PUSH"
+        echo "::set-output name=containerRegistryUser::$CONTAINER_REGISTRY_USER"
         echo "::set-output name=containerRegistryPullSecretName::$CONTAINER_REGISTRY_PULL_SECRET_NAME"
 
         echo "::set-output name=helmRegistryHost::$HELM_REGISTRY_HOSTNAME"
-        echo "::set-output name=helmRegistryPushUser::$HELM_REGISTRY_USER_PUSH"
+        echo "::set-output name=helmRegistryUser::$HELM_REGISTRY_USER"
         echo "::set-output name=helmRegistryBaseUrl::$HELM_REGISTRY_BASE_URL"
 
         echo "::set-output name=nexusBaseUrl::$NEXUS_BASE_URL"

@@ -20,9 +20,9 @@ outputs:
   helmRegistryHost:
     description: ""
     value: ${{ steps.common-data.outputs.helmRegistryHost }}
-  helmRegistryPushUser:
+  helmRegistryUser:
     description: ""
-    value: ${{ steps.common-data.outputs.helmRegistryPushUser }}
+    value: ${{ steps.common-data.outputs.helmRegistryUser }}
   helmRegistryBaseUrl:
     description: ""
     value: ${{ steps.common-data.outputs.helmRegistryBaseUrl }}

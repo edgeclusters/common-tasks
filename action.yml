@@ -46,6 +46,9 @@ outputs:
   gitUserEmail:
     description: ""
     value: ${{ steps.common-data.outputs.gitUserEmail }}
+  argoCdClusterName:
+    description: ""
+    value: ${{ steps.common-data.outputs.argoCdClusterName }}
 
 runs:
   using: "composite"
@@ -77,3 +80,4 @@ runs:
 
         echo "::set-output name=targetPlatforms::$TARGET_PLATFORMS"
         echo "::set-output name=gitUserEmail::$GIT_USER_EMAIL"
+        echo "::set-output name=argoCdClusterName::$ARGOCD_CLUSTER"

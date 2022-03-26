@@ -59,12 +59,13 @@ runs:
       with:
         repository: edgeclusters/academy-common
         token: ${{ inputs.accessToken }}
+        path: common
 
     - name: Register outputs
       shell: bash
       id: common-data
       run: |
-        source config.env
+        source common/config.env
         
         echo "::set-output name=containerRegistryHost::$CONTAINER_REGISTRY_HOSTNAME"
         echo "::set-output name=containerRegistryUser::$CONTAINER_REGISTRY_USER"

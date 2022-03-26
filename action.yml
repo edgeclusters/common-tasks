@@ -54,37 +54,17 @@ runs:
   using: "composite"
 
   steps:
-    # - name: Checkout common environment values
-    #   uses: actions/checkout@v2
-    #   with:
-    #     repository: edgeclusters/academy-common
-    #     token: ${{ inputs.accessToken }}
+    - name: Checkout common environment values
+      uses: actions/checkout@v2
+      with:
+        repository: edgeclusters/academy-common
+        token: ${{ inputs.accessToken }}
 
     - name: Register outputs
       shell: bash
       id: common-data
       run: |
-        export TARGET_PLATFORMS=linux/amd64,linux/arm64
-        export ARGOCD_NAMESPACE=argocd
-        export ARGOCD_CLUSTER=edge-cluster
-        export GLOBAL_USER=amoravek
-
-        export CONTAINER_REGISTRY_HOSTNAME=reg.edgeclusters.com
-        export CONTAINER_REGISTRY_USER=robot-master
-        export CONTAINER_REGISTRY_PULL_SECRET_NAME=reg-edgeclusters-com
-
-        export HELM_REGISTRY_HOSTNAME=reg.edgeclusters.com
-        #export HELM_REGISTRY_BASE_URL=https://reg.edgeclusters.com/
-        export HELM_REGISTRY_BASE_URL=https://reg.edgeclusters.com/chartrepo/academy
-        export HELM_REGISTRY_USER=robot-master
-
-        export NEXUS_USER=admin
-        export NEXUS_BASE_URL=https://nexus.edgeclusters.com
-        export NEXUS_SNAPSHOTS_REPO_URL=${NEXUS_BASE_URL}/repository/maven-snapshots
-        export NEXUS_RELEASES_REPO_URL=${NEXUS_BASE_URL}/repository/maven-releases
-        export GIT_USER_EMAIL=info@edgeclusters.com
-
-        # source config.env
+        source config.env
         
         echo "::set-output name=containerRegistryHost::$CONTAINER_REGISTRY_HOSTNAME"
         echo "::set-output name=containerRegistryUser::$CONTAINER_REGISTRY_USER"
